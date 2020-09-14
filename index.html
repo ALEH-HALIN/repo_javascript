@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        ul {
+            margin-top: 30px;
+            list-style: none;
+            display: flex;
+        }
+
+        a {
+            padding: 16px;
+            background: brown;
+            color: #ffffff;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        a:hover {
+            background: orange;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <h2>Меню</h2>
+
+    <form name="myForm">
+        <p>Пункты меню <input type="text" size="50" name="elemMenu" value="Главная, О компании, Новости, Продукция"></p>
+        <p>Цвет текста <input type="color" name="foregroundColor" value="#ffffff"></p>
+        <p>Цвет фона <input type="color" name="backgroundColor" value="#b15d5d"></p>
+        <p>Цвет hover <input type="color" name="hoverColor" value="#4eabb1"></p>
+        <p><input type="button" onclick="menu()" value="Создать меню"></p>
+    </form>
+
+    <div id="box"></div>
+    <style id="myStyle"></style>
+    <div id="big"></div>
+
+    <script>
+
+        function menu() {
+            let elemMenu = myForm.elemMenu.value,
+                foregroundColor = myForm.foregroundColor.value,
+                backgroundColor = myForm.backgroundColor.value,
+                hoverColor = myForm.hoverColor.value;
+
+            let arrMenu = elemMenu.split(", ");
+
+            let s = '<ul>', f = '';
+
+            arrMenu.forEach(element => {
+                s += `<li onclick="bigPicture(Math.round(Math.random() * 10) + 1)"><a href="#">${element}</a></li>`;
+            });
+
+            s += '</ul>';
+
+            f = ` a {
+            background:${backgroundColor};
+            color: ${foregroundColor};
+            }
+
+            a:hover {
+            background:${hoverColor};     
+            }
+            `;
+
+            myStyle.innerHTML = f;
+
+            box.innerHTML = s;
+        }
+
+        function bigPicture(param) {
+            let s2 = '';
+            s2 = `<img onclick=" big.innerHTML = '' " style="width: 70%" src="images/${param}.jpg">`;
+            big.innerHTML = s2;
+        }
+
+    </script>
+
+</body>
+
+</html>
